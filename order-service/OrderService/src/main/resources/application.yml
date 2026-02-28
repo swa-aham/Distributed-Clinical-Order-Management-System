@@ -1,0 +1,21 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+#    url: jdbc:postgresql://YOUR_SUPABASE_HOST:5432/postgres
+#    url: jdbc:postgresql://postgres:adqXCYpjJjBWk57tP4XE@db.zwfhijohytyauyrwoewj.supabase.co:5432/postgres
+    url: jdbc:postgresql://db.zwfhijohytyauyrwoewj.supabase.co:5432/postgres
+    username: postgres
+    password: adqXCYpjJjBWk57tP4XE
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
