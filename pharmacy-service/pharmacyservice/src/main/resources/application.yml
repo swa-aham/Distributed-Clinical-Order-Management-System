@@ -1,0 +1,32 @@
+server:
+  port: 8082
+
+spring:
+  datasource:
+    url: jdbc:postgresql://db.zwfhijohytyauyrwoewj.supabase.co:5432/postgres
+    username: postgres
+    password: adqXCYpjJjBWk57tP4XE
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+
+  kafka:
+    bootstrap-servers: localhost:9092
+
+    consumer:
+      group-id: pharmacy-group-v2   # change group once to reset offset
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+        spring.json.use.type.headers: false
+        spring.json.value.default.type: com.example.pharmacyservice.event.ClinicalOrderCreatedEvent
+
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false
