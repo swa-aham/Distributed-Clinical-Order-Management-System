@@ -21,3 +21,5 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       spring.json.add.type.headers: true
       spring.json.type.mapping: event:com.example.orderservice.event.ClinicalOrderCreatedEvent
+      properties:
+        spring.json.add.type.headers: false
