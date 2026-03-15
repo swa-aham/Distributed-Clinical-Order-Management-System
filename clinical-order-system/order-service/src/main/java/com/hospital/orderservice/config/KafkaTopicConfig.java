@@ -1,0 +1,42 @@
+package com.hospital.orderservice.config;
+
+import org.apache.kafka.clients.admin.NewTopic;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.kafka.config.TopicBuilder;
+
+@Configuration
+public class KafkaTopicConfig {
+
+    @Bean
+    public NewTopic clinicalOrderCreatedTopic() {
+        return TopicBuilder.name("clinical-order-created")
+                .partitions(3)
+                .replicas(1)
+                .build();
+    }
+
+    @Bean
+    public NewTopic medicationReservedTopic() {
+        return TopicBuilder.name("medication-reserved")
+                .partitions(3)
+                .replicas(1)
+                .build();
+    }
+
+    @Bean
+    public NewTopic clinicalOrderCreatedDlt() {
+        return TopicBuilder.name("clinical-order-created.DLT")
+                .partitions(1)
+                .replicas(1)
+                .build();
+    }
+
+    @Bean
+    public NewTopic medicationReservedDlt() {
+        return TopicBuilder.name("medication-reserved.DLT")
+                .partitions(1)
+                .replicas(1)
+                .build();
+    }
+}
